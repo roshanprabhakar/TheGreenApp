@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
         android:text="Sign Up"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/back"
         app:layout_constraintStart_toStartOf="@+id/back"
         app:layout_constraintTop_toBottomOf="@+id/sgnuppassword" />
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Back"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

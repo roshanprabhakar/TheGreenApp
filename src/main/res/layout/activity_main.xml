@@ -15,7 +15,7 @@
         android:layout_marginStart="13dp"
         android:text="Sign Up"
         style="?android:attr/borderlessButtonStyle"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewForgotPassword"
         app:layout_constraintStart_toStartOf="@+id/textViewForgotPassword" />
 
@@ -27,7 +27,7 @@
         android:layout_marginBottom="9dp"
         android:text="Login"
         style="?android:attr/borderlessButtonStyle"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@+id/sgnup"
         app:layout_constraintStart_toStartOf="@+id/sgnup" />
 

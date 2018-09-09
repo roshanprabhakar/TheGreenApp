@@ -81,13 +81,13 @@ public class HomeFragment extends Fragment {
 
     public void setText(){
 
-        String article1Text = GetNewsInfo.getArticleInfoArrayList().get(0).get(0) + " by " + GetNewsInfo.getArticleInfoArrayList().get(0).get(1);
-        String article2Text = GetNewsInfo.getArticleInfoArrayList().get(1).get(0) + " by " + GetNewsInfo.getArticleInfoArrayList().get(1).get(1);
-        String article3Text = GetNewsInfo.getArticleInfoArrayList().get(2).get(0) + " by " + GetNewsInfo.getArticleInfoArrayList().get(2).get(1);
+        String article1Text = (String) GetNewsInfo.getArticleInfoArrayList().get(0).get(0);
+        String article2Text = (String) GetNewsInfo.getArticleInfoArrayList().get(1).get(0);
+        String article3Text = (String) GetNewsInfo.getArticleInfoArrayList().get(2).get(0);
 
         article1.setText(article1Text);
         article2.setText(article2Text);
-        article2.setText(article3Text);
+        article3.setText(article3Text);
     }
 
     public void setImages(){
@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
 
         Picasso.get().load(url1).into(image1);
         Picasso.get().load(url2).into(image2);
-        Picasso.get().load(url2).into(image3);
+        Picasso.get().load(url3).into(image3);
 
 
 
