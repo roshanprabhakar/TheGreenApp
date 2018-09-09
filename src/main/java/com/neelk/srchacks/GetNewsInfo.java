@@ -27,38 +27,46 @@ public class GetNewsInfo {
 
     public static void getNewsJSON() {
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        StringBuilder builder = new StringBuilder();
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+                StringBuilder builder = new StringBuilder();
 
-        try {
+                try {
 
-            URL newsURL = new URL("https://newsapi.org/v2/top-headlines?sources=national-geographic&apiKey=adc1ac57c0e6401eaf1108934cf03268");
-            HttpsURLConnection yConn = (HttpsURLConnection) newsURL.openConnection();
-            yConn.setRequestProperty("Accept", "application/json");
-            if (yConn.getResponseCode() == 200) {
-                InputStream responseBody = yConn.getInputStream();
-                InputStreamReader responseBodyReader =
-                        new InputStreamReader(responseBody, "UTF-8");
-                try (BufferedReader in = new BufferedReader(responseBodyReader)) {
-                    String line;
-                    while ((line = in.readLine()) != null) {
-                        builder.append(line); // + "\r\n"(no need, json has no line breaks!)
+                    URL newsURL = new URL("https://newsapi.org/v2/top-headlines?sources=national-geographic&apiKey=adc1ac57c0e6401eaf1108934cf03268");
+                    HttpsURLConnection yConn = (HttpsURLConnection) newsURL.openConnection();
+                    yConn.setRequestProperty("Accept", "application/json");
+                    if (yConn.getResponseCode() == 200) {
+                        InputStream responseBody = yConn.getInputStream();
+                        InputStreamReader responseBodyReader =
+                                new InputStreamReader(responseBody, "UTF-8");
+                        try (BufferedReader in = new BufferedReader(responseBodyReader)) {
+                            String line;
+                            while ((line = in.readLine()) != null) {
+                                builder.append(line); // + "\r\n"(no need, json has no line breaks!)
+                            }
+                            in.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                     }
-                    in.close();
-                } catch (Exception e) {
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-
+                jsonAsString = builder.toString();
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        jsonAsString = builder.toString();
+        });
+        thread.start();
+
+
     }
 
     public static ArrayList<ArrayList> parseJSON(){

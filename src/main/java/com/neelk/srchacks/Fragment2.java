@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -21,6 +22,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,7 +32,7 @@ import static com.android.volley.VolleyLog.TAG;
 
 public class Fragment2 extends Fragment implements OnMapReadyCallback {
 
-
+    private ArrayList<ArrayList> placesInfo;
     private GoogleMap mMap;
     private double lat;
     private double lng;
@@ -52,6 +55,12 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initLatLong();
+        NearbyCenters.findNearbyCenters();
+        try {
+           placesInfo =  NearbyCenters.parseCenterJson();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -81,12 +90,16 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
 
 
 
-        /*
+
         for (int i = 0; i < 3; i++) {
-            LatLng LOC = new LatLng(centerLatitudes[i], centerLongitudes[i]);
-            mMap.addMarker(new MarkerOptions().position(LOC).title(centerNames[i]));
+            LatLng LOC = new LatLng((Double) placesInfo.get(i).get(2), (Double) placesInfo.get(i).get(3));
+            mMap.addMarker(new MarkerOptions().position(LOC).title( placesInfo.get(i).get(0) + "-" + placesInfo.get(i).get(1)));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(LOC));
-        }*/
+        }
+        CameraPosition camera_position = new CameraPosition.Builder().target(new LatLng(lat, lng)).zoom(10).build();
+        CameraUpdate updateCamera = CameraUpdateFactory.newCameraPosition(camera_position);
+        googleMap.animateCamera(updateCamera);
+
     }
 
     public void initLatLong() {

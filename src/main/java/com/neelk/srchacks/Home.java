@@ -60,13 +60,21 @@ public class Home extends AppCompatActivity {
             case R.id.menu_fragment2:
                 fragment = Fragment2.newInstance();
                 ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.constraint_layout, fragment, "Fragment 2");
+                ft.replace(R.id.constraint_layout, fragment, "Recycling Center");
                 ft.addToBackStack(null);
                 ft.commit();
                 break;
 
             case R.id.menu_settings:
                 fragment = Settings.newInstance();
+                ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.constraint_layout, fragment, "Settings");
+                ft.addToBackStack(null);
+                ft.commit();
+                break;
+
+            case R.id.menu_pedometer:
+                fragment = Pedometer.newInstance();
                 ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.constraint_layout, fragment, "Settings");
                 ft.addToBackStack(null);

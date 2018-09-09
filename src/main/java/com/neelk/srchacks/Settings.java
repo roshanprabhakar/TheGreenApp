@@ -62,7 +62,7 @@ public class Settings extends Fragment {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://github.com/neelkandlikar/SRC-Hacks-2018"));
+                intent.setData(Uri.parse("https://github.com/neelkandlikar/SRCHacks"));
                 startActivity(intent);
 
             }

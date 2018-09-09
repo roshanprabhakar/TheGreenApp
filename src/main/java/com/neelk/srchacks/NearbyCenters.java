@@ -1,6 +1,11 @@
 package com.neelk.srchacks;
 
-import android.os.StrictMode;
+
+import android.support.v7.app.AppCompatActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,53 +18,95 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import static android.os.StrictMode.*;
+
 public class NearbyCenters {
 
-    public static void main(String[] args) {
-        NearbyCenters centers = new NearbyCenters();
-        centers.findNearbyCenters();
-    }
-
-    public void findNearbyCenters(){
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        StringBuilder builder = new StringBuilder();
-        Fragment2 fragment2 = new Fragment2();
-
-        try {
+    private static String jsonAsString;
+    private  static String  key = "AIzaSyDif3Yf5hwKI16RWw64zCPQvgqfrVF3SVU";
+    private static String hardCodedUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.548700,-122.058975&radius=30000&keyword=recycling&key=" + key;
 
 
-            URL newsURL = new URL("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=recycling%20centers&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:80000@" + fragment2.getLat() +  "," +  fragment2.getLng() + "&key=AIzaSyDif3Yf5hwKI16RWw64zCPQvgqfrVF3SVU");
-            HttpsURLConnection yConn = (HttpsURLConnection) newsURL.openConnection();
-            yConn.setRequestProperty("Accept", "application/json");
-            if (yConn.getResponseCode() == 200) {
-                InputStream responseBody = yConn.getInputStream();
-                InputStreamReader responseBodyReader =
-                        new InputStreamReader(responseBody, "UTF-8");
-                try (BufferedReader in = new BufferedReader(responseBodyReader)) {
-                    String line;
-                    while ((line = in.readLine()) != null) {
-                        builder.append(line); // + "\r\n"(no need, json has no line breaks!)
+
+
+    public static void findNearbyCenters() {
+
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                     ThreadPolicy policy = new ThreadPolicy.Builder().permitAll().build();
+                // setThreadPolicy(policy);
+                StringBuilder builder = new StringBuilder();
+                Fragment2 fragment2 = new Fragment2();
+
+                try {
+
+
+                    // URL placesRequest = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + fragment2.getLat() + "," + fragment2.getLng()  + "&radius=30000&type=restaurant&keyword=indian&key=" + key);
+                    URL placesRequest = new URL(hardCodedUrl);
+                    HttpsURLConnection yConn = (HttpsURLConnection) placesRequest.openConnection();
+                    yConn.setRequestProperty("Accept", "application/json");
+                    if (yConn.getResponseCode() == 200) {
+                        InputStream responseBody = yConn.getInputStream();
+                        InputStreamReader responseBodyReader =
+                                new InputStreamReader(responseBody, "UTF-8");
+                        try (BufferedReader in = new BufferedReader(responseBodyReader)) {
+                            String line;
+                            while ((line = in.readLine()) != null) {
+                                builder.append(line); // + "\r\n"(no need, json has no line breaks!)
+                            }
+                            in.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                     }
-                    in.close();
-                } catch (Exception e) {
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
+                jsonAsString = builder.toString();
+
 
             }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(builder.toString());
-        
+        });
+        thread.start();
+
+
     }
 
-    private void parseCenterJson(String s) {
+    public static ArrayList<ArrayList> parseCenterJson() throws JSONException {
+
+        ArrayList<ArrayList> placesInfo = new ArrayList<>(3);
+            System.out.println(jsonAsString);
+            JSONObject jResponse = new JSONObject(jsonAsString);
+            JSONArray results = (JSONArray) jResponse.get("results");
+
+            for(int i = 0; i < 3; i++) {
+                ArrayList<Object> place = new ArrayList<>(4);
+                JSONObject firstElement = (JSONObject) results.get(i);
+                String name = firstElement.getString("name");
+                JSONObject geometry = (JSONObject) firstElement.get("geometry");
+                JSONObject location = (JSONObject) geometry.get("location");
+                Double placeLat = Double.parseDouble(location.getString("lat"));
+                Double placeLong = Double.parseDouble(location.getString("lng"));
+                String address = firstElement.getString("vicinity");
+                place.add(name);
+                place.add(address);
+                place.add(placeLat);
+                place.add(placeLong);
+
+                placesInfo.add(place);
+
+
+            }
+
+            return placesInfo;
+
+
     }
 
 }
