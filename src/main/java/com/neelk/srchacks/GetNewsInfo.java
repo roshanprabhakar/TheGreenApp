@@ -27,9 +27,7 @@ public class GetNewsInfo {
 
     public static void getNewsJSON() {
 
-        Thread thread = new Thread(new Runnable(){
-            @Override
-            public void run(){
+
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
                 StrictMode.setThreadPolicy(policy);
                 StringBuilder builder = new StringBuilder();
@@ -63,11 +61,9 @@ public class GetNewsInfo {
                 }
                 jsonAsString = builder.toString();
             }
-        });
-        thread.start();
 
 
-    }
+
 
     public static ArrayList<ArrayList> parseJSON(){
             articleInfo = new ArrayList<>(3);

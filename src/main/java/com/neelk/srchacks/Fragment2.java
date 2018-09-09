@@ -96,7 +96,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback {
             mMap.addMarker(new MarkerOptions().position(LOC).title( placesInfo.get(i).get(0) + "-" + placesInfo.get(i).get(1)));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(LOC));
         }
-        CameraPosition camera_position = new CameraPosition.Builder().target(new LatLng(lat, lng)).zoom(10).build();
+        CameraPosition camera_position = new CameraPosition.Builder().target(new LatLng(lat, lng)).zoom(11).build();
         CameraUpdate updateCamera = CameraUpdateFactory.newCameraPosition(camera_position);
         googleMap.animateCamera(updateCamera);
 

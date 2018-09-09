@@ -31,9 +31,7 @@ public class NearbyCenters {
 
     public static void findNearbyCenters() {
 
-        Thread thread = new Thread(new Runnable(){
-            @Override
-            public void run(){
+
                      ThreadPolicy policy = new ThreadPolicy.Builder().permitAll().build();
                 // setThreadPolicy(policy);
                 StringBuilder builder = new StringBuilder();
@@ -72,11 +70,8 @@ public class NearbyCenters {
 
 
             }
-        });
-        thread.start();
 
 
-    }
 
     public static ArrayList<ArrayList> parseCenterJson() throws JSONException {
 

@@ -41,7 +41,7 @@ public class Home extends AppCompatActivity {
 
     }
 
-    private void selectFragment(MenuItem item) {
+    public void selectFragment(MenuItem item) {
         fragment = null;
         FragmentTransaction ft;
         Intent intent;
@@ -65,6 +65,9 @@ public class Home extends AppCompatActivity {
                 ft.commit();
                 break;
 
+
+
+
             case R.id.menu_settings:
                 fragment = Settings.newInstance();
                 ft = getSupportFragmentManager().beginTransaction();
@@ -73,13 +76,6 @@ public class Home extends AppCompatActivity {
                 ft.commit();
                 break;
 
-            case R.id.menu_pedometer:
-                fragment = Pedometer.newInstance();
-                ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.constraint_layout, fragment, "Settings");
-                ft.addToBackStack(null);
-                ft.commit();
-                break;
         }
     }
 

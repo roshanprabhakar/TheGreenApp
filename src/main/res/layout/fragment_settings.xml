@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:design="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/settingsConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Settings">
+    tools:context=".Settings"
+    tools:layout_editor_absoluteY="81dp">
 
 
     <Button
@@ -14,26 +14,24 @@
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="14dp"
         android:text="Logout"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/stepsButton"
+        app:layout_constraintStart_toStartOf="@+id/stepsButton"
+        app:layout_constraintTop_toBottomOf="@+id/githubLogo" />
 
     <TextView
         android:id="@+id/settingsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="195dp"
+        android:layout_marginBottom="92dp"
         android:layout_marginTop="80dp"
         android:gravity="center"
         android:text="Settings"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/githubLogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,12 +39,23 @@
         android:id="@+id/githubLogo"
         android:layout_width="89dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="178dp"
+        android:layout_marginBottom="34dp"
         android:src="@drawable/githublogo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/logOut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settingsTextView" />
+
+    <Button
+        android:id="@+id/stepsButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="137dp"
+        android:text="Steps"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/githubLogo"
+        app:layout_constraintTop_toBottomOf="@+id/logOut" />
 
 
 </android.support.constraint.ConstraintLayout>

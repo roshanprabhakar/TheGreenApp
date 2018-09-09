@@ -15,6 +15,7 @@ public class Settings extends Fragment {
 
     private Button logOut;
     private ImageView githubLogo;
+    private Button steps;
 
 
     public Settings() {
@@ -44,6 +45,7 @@ public class Settings extends Fragment {
 
         githubLogo = view.findViewById(R.id.githubLogo);
         logOut = (Button) view.findViewById(R.id.logOut);
+        steps = view.findViewById(R.id.stepsButton);
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +69,15 @@ public class Settings extends Fragment {
 
             }
         });
+        steps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), PedometerActivity.class ));
+
+            }
+        });
+
+
         return view;
 
     }

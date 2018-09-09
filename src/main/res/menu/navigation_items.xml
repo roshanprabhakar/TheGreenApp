@@ -14,10 +14,6 @@
             android:icon="@drawable/ic_nature_black_24dp"
             />
 
-    <item
-        android:id="@+id/menu_pedometer"
-        android:title="Pedometer"
-        android:icon="@drawable/ic_directions_walk_black_24dp" />
 
         <item
             android:id="@+id/menu_settings"

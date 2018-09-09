@@ -18,11 +18,10 @@ public class Pedometer extends Fragment {
     private Button prizes;
 
     public Pedometer() {
-        // Required empty public constructor
     }
 
 
-    // TODO: Rename and change types and number of parameters
+
     public static Pedometer newInstance() {
         Pedometer fragment = new Pedometer();
 
@@ -68,7 +67,7 @@ public class Pedometer extends Fragment {
     }
 
     private void simulateSteps() throws InterruptedException {
-        for (int i = 0; i < 10000; i++){
+        for (int i = 0; i < 50; i++){
             Thread.sleep(1000);
             noOfStep.setText(Integer.toString(i));
         }
