@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".HomeFragment"
+    tools:layout_editor_absoluteY="81dp">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:id="@+id/newsTextView"
+        android:layout_width="317dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginTop="47dp"
+        android:fontFamily="@font/roboto_thin"
+        android:gravity="center"
+        android:text="Latest Environmental News"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewArticle1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewArticle1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:layout_marginBottom="39dp"
+        android:layout_marginEnd="55dp"
+        android:fontFamily="@font/roboto_thin"
+        android:gravity="right"
+        android:text=""
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewArticle2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image1"
+        app:layout_constraintTop_toBottomOf="@+id/newsTextView" />
+
+    <TextView
+        android:id="@+id/textViewArticle2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="53dp"
+        android:fontFamily="@font/roboto_thin"
+        android:gravity="right"
+        android:text=""
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewArticle3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewArticle1" />
+
+    <TextView
+        android:id="@+id/textViewArticle3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="174dp"
+        android:layout_marginEnd="53dp"
+        android:fontFamily="@font/roboto_thin"
+        android:gravity="right"
+        android:text=""
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewArticle2" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="21dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="148dp"
+        app:layout_constraintBottom_toTopOf="@+id/image2"
+        app:layout_constraintEnd_toStartOf="@+id/textViewArticle1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginStart="31dp"
+        app:layout_constraintBottom_toTopOf="@+id/image3"
+        app:layout_constraintEnd_toStartOf="@+id/textViewArticle2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image1" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="159dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginStart="31dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewArticle3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image2" />
+
+</android.support.constraint.ConstraintLayout>
+
+

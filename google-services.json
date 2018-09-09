@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "833232506665",
+    "firebase_url": "https://srchacks-fd6a8.firebaseio.com",
+    "project_id": "srchacks-fd6a8",
+    "storage_bucket": "srchacks-fd6a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:833232506665:android:2aa8612d970a66e3",
+        "android_client_info": {
+          "package_name": "com.neelk.srchacks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "833232506665-9vu1ahb6hel688kqsaud0kd1kf3n69js.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neelk.srchacks",
+            "certificate_hash": "57b9373c5cc5ff8dc75f05508b50c25300478454"
+          }
+        },
+        {
+          "client_id": "833232506665-a2i0fsqsfqcc466dv192mpkq4dhktsr5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXr_9qDnGvU8W1EX78MbY1jxYFUVu8lR8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "833232506665-a2i0fsqsfqcc466dv192mpkq4dhktsr5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
