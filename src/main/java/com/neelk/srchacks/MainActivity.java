@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
                                     startActivity(new Intent(MainActivity.this, Home.class));
+                                    //startActivity(new Intent(MainActivity.this, UserArea.class));
+
                                 } else {
                                     Toast.makeText(MainActivity.this, "Login Failed, Please try Again", Toast.LENGTH_SHORT).show();
                                             return;

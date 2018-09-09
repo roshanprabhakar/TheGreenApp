@@ -1,9 +1,16 @@
 package com.neelk.srchacks;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +20,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -30,6 +45,8 @@ public class HomeFragment extends Fragment {
     private de.hdodenhof.circleimageview.CircleImageView image1;
     private de.hdodenhof.circleimageview.CircleImageView image2;
     private de.hdodenhof.circleimageview.CircleImageView image3;
+    private double lng;
+    private double lat;
 
 
     public HomeFragment() {
@@ -66,20 +83,22 @@ public class HomeFragment extends Fragment {
         image3 = view.findViewById(R.id.image3);
 
 
-
         GetNewsInfo.getNewsJSON();
         GetNewsInfo.parseJSON();
         System.out.println(Arrays.toString(GetNewsInfo.getArticleInfoArrayList().toArray()));
         setText();
         setImages();
         setOnClickListeners();
+
+
+
         // articleTitles.add("hello");
         // mImageUrls.add("https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1497645355/04-banff-national-park-moraine-lake-canada-150CANADA0617.jpg?itok=O6eAZSSV");
 
         return view;
     }
 
-    public void setText(){
+    public void setText() {
 
         String article1Text = (String) GetNewsInfo.getArticleInfoArrayList().get(0).get(0);
         String article2Text = (String) GetNewsInfo.getArticleInfoArrayList().get(1).get(0);
@@ -90,25 +109,24 @@ public class HomeFragment extends Fragment {
         article3.setText(article3Text);
     }
 
-    public void setImages(){
+    public void setImages() {
 
         String url1 = (String) GetNewsInfo.getArticleInfoArrayList().get(0).get(3);
-        String url2  = (String) GetNewsInfo.getArticleInfoArrayList().get(1).get(3);
-        String url3  = (String) GetNewsInfo.getArticleInfoArrayList().get(2).get(3);
+        String url2 = (String) GetNewsInfo.getArticleInfoArrayList().get(1).get(3);
+        String url3 = (String) GetNewsInfo.getArticleInfoArrayList().get(2).get(3);
 
         Picasso.get().load(url1).into(image1);
         Picasso.get().load(url2).into(image2);
         Picasso.get().load(url3).into(image3);
 
 
-
     }
 
-    public void setOnClickListeners(){
+    public void setOnClickListeners() {
 
         final String article1TextUrl = (String) GetNewsInfo.getArticleInfoArrayList().get(0).get(2);
-        final String article2TextUrl  = (String) GetNewsInfo.getArticleInfoArrayList().get(1).get(2);
-        final String article3TextUrl  = (String) GetNewsInfo.getArticleInfoArrayList().get(2).get(2);
+        final String article2TextUrl = (String) GetNewsInfo.getArticleInfoArrayList().get(1).get(2);
+        final String article3TextUrl = (String) GetNewsInfo.getArticleInfoArrayList().get(2).get(2);
 
         article1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +155,10 @@ public class HomeFragment extends Fragment {
 
         });
     }
+
+
 }
+
+
 
 

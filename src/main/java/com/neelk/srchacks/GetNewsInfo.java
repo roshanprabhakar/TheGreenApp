@@ -2,7 +2,6 @@ package com.neelk.srchacks;
 
 import android.os.StrictMode;
 
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;

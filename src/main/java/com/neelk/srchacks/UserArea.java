@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class UserArea extends AppCompatActivity {
 
     private Button logout;
+    private TextView coordinates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +24,8 @@ public class UserArea extends AppCompatActivity {
                 startActivity(new Intent(UserArea.this, MainActivity.class));
             }
         });
+
+
+
     }
 }

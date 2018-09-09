@@ -62,15 +62,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="131dp"
-        android:layout_height="0dp"
+        android:layout_width="152dp"
+        android:layout_height="187dp"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/signUpTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/firebaselogo" />
+        app:srcCompat="@drawable/treelogo" />
 
     <EditText
         android:id="@+id/sgnuppassword"

@@ -10,18 +10,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.android.volley.VolleyLog.TAG;
 
 
-//import org.apache.http.client.methods.HttpGetHC4;
+public class Fragment2 extends Fragment implements OnMapReadyCallback {
 
 
-public class Fragment2 extends Fragment {
-
-
+    private GoogleMap mMap;
+    private double lat;
+    private double lng;
+    public Double[] centerLatitudes = new Double[3];
+    public Double[] centerLongitudes = new Double[3];
+    public String[] centerNames = new String[3];
 
 
     public Fragment2() {
@@ -37,9 +51,7 @@ public class Fragment2 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
+        initLatLong();
 
     }
 
@@ -48,18 +60,66 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_2, container, false);
+        if (this.mMap == null) {
+            SupportMapFragment mapFrag = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+            mapFrag.getMapAsync(this);
 
-
-
-
-
+        }
 
         return view;
-        //return for oncreateView
-
-
     }
 
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        HomeFragment homeFragment = new HomeFragment();
+        mMap = googleMap;
+        LatLng userLOC = new LatLng(getLat(), getLng());
+        mMap.addMarker(new MarkerOptions().position(userLOC).title("Current Location"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(userLOC));
+
+
+
+        /*
+        for (int i = 0; i < 3; i++) {
+            LatLng LOC = new LatLng(centerLatitudes[i], centerLongitudes[i]);
+            mMap.addMarker(new MarkerOptions().position(LOC).title(centerNames[i]));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(LOC));
+        }*/
+    }
+
+    public void initLatLong() {
+       /* LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+            if (location != null) {
+                lat = location.getLatitude();
+                lng = location.getLongitude();
+
+            }*/
+        lat = 37.548700;
+        lng  = -122.058975;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
 
 }
 
